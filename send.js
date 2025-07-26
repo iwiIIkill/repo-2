@@ -6,9 +6,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const BOT_TOKEN = '8469610979:AAFa-SaiPTQ7toQhqDhYjuKbO-P7c1V-44s';
-const CHAT_ID = '-4813765120';
+const CHAT_ID = '-1002795845966';
 
-app.use(cors());
+app.use(cors());  // <--- Добавлено
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -22,18 +22,18 @@ app.post('/', async (req, res) => {
   }
   try {
     const tgRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    chat_id: CHAT_ID,
-    text: `👤 ФИО: ${name}\n📱 Номер: ${phone}`
-  }),
-});
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: `👤 ФИО: ${name}\n📱 Номер: ${phone}`
+      }),
+    });
     const data = await tgRes.json();
     if (data.ok) {
       res.json({ ok: true });
     } else {
-      res.status(500).json({ ok: false, error: data.description || 'Unknown error' });
+      res.status(500).json({ ok: false, error: data.description });
     }
   } catch (e) {
     res.status(500).json({ ok: false, error: e.message });
