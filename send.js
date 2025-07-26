@@ -21,7 +21,7 @@ app.post('/', async (req, res) => {
     return res.status(400).json({ ok: false, error: 'Missing name or phone' });
   }
   try {
-    const tgRes = await fetch(`https://api.telegram.org/bot${'8469610979:AAFa-SaiPTQ7toQhqDhYjuKbO-P7c1V-44s'}/sendMessage`, {
+    const tgRes = await fetch(`https://api.telegram.org/bot${8469610979:AAFa-SaiPTQ7toQhqDhYjuKbO-P7c1V-44s}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
