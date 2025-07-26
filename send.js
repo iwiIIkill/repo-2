@@ -22,13 +22,13 @@ app.post('/', async (req, res) => {
   }
   try {
     const tgRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: `👤 ФИО: ${name}\n📱 Номер: ${phone}`
-      }),
-    });
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    chat_id: CHAT_ID,
+    text: `👤 ФИО: ${name}\n📱 Номер: ${phone}`
+  }),
+});
     const data = await tgRes.json();
     if (data.ok) {
       res.json({ ok: true });
